@@ -1,6 +1,6 @@
 #include "json_parser.h"
-#include <cstring>
-#include <cstdlib>
+#include <string.h>
+#include <stdlib.h>
 
 // Helper function to extract string value from JSON
 static bool extractString(const char* json, const char* key, char* out, size_t outSize) {

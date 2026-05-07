@@ -1,6 +1,6 @@
 #include "display.h"
-#include <cstdio>
-#include <cstring>
+#include <stdio.h>
+#include <string.h>
 
 Display::Display(Monitor* monitorPtr)
     : monitor(monitorPtr), lastUpdateTime(0) {

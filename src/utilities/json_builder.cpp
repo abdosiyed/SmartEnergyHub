@@ -1,7 +1,7 @@
 #include "json_builder.h"
 #include "config.h"
-#include <cstdio>
-#include <cstring>
+#include <stdio.h>
+#include <string.h>
 
 void JSON_Builder::buildStatusJSON(char* buffer, size_t bufferSize, Monitor* monitor) {
     // Build JSON manually to avoid ArduinoJson serialization overhead

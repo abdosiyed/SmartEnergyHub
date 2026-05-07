@@ -3,7 +3,7 @@
 > A complete IoT solution for intelligent household energy management using ESP32 microcontroller with a web-based dashboard and REST API.
 
 [![Built with PlatformIO](https://img.shields.io/badge/Built%20with-PlatformIO-orange)](https://platformio.org/)
-[![ESP32](https://img.shields.io/badge/Platform-ESP32-blue)](https://www.espressif.com/)
+[![Arduino Mega](https://img.shields.io/badge/Platform-Arduino%20Mega-blue)](https://www.arduino.cc/en/products/boards/arduino-mega-2560)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 📋 Table of Contents
@@ -70,7 +70,7 @@ SmartEnergyHub implements a strict **5-layer architecture** with unidirectional 
 ## 🛠️ Hardware Requirements
 
 ### Microcontroller
-- **ESP32 DOIT DEVKIT V1** (Espressif ESP32, 240MHz, 320KB RAM, 4MB Flash)
+- **Arduino Mega 2560** (ATmega2560, 16MHz, 8KB RAM, 256KB Flash)
 
 ### Sensors & Components
 - **4x Analog Power Sensors**: Linear ADC mapping to 0-2000W per room
@@ -86,34 +86,34 @@ SmartEnergyHub implements a strict **5-layer architecture** with unidirectional 
 ## 📍 Pin Configuration
 
 ### ADC Sensors (Power Measurement)
-| Room | GPIO Pin | ADC Channel |
-|------|----------|-------------|
-| Living Room (R1) | 34 | 0-2000W |
-| Kitchen (R2) | 35 | 0-2000W |
-| Bedroom 1 (R3) | 32 | 0-2000W |
-| Bedroom 2 (R4) | 33 | 0-2000W |
+| Room | Analog Pin | ADC Channel |
+|------|----------|----------|
+| Living Room (R1) | A0 | 0-2000W |
+| Kitchen (R2) | A1 | 0-2000W |
+| Bedroom 1 (R3) | A2 | 0-2000W |
+| Bedroom 2 (R4) | A3 | 0-2000W |
 
 ### Manual Switches (Input, INPUT_PULLUP)
 | Room | GPIO Pin | Action |
 |------|----------|--------|
-| Living Room (R1) | 18 | Toggle R1 ON/OFF |
-| Kitchen (R2) | 19 | Toggle R2 ON/OFF |
-| Bedroom 1 (R3) | 21 | Toggle R3 ON/OFF |
-| Bedroom 2 (R4) | 22 | Toggle R4 ON/OFF |
+| Living Room (R1) | 2 | Toggle R1 ON/OFF |
+| Kitchen (R2) | 3 | Toggle R2 ON/OFF |
+| Bedroom 1 (R3) | 4 | Toggle R3 ON/OFF |
+| Bedroom 2 (R4) | 5 | Toggle R4 ON/OFF |
 
 ### Status LEDs (Output, HIGH=ON)
 | Room | GPIO Pin | Behavior |
 |------|----------|----------|
-| Living Room (R1) | 13 | ON/OFF or 300ms blink (overload) |
-| Kitchen (R2) | 12 | ON/OFF or 300ms blink (overload) |
-| Bedroom 1 (R3) | 14 | ON/OFF or 300ms blink (overload) |
-| Bedroom 2 (R4) | 27 | ON/OFF or 300ms blink (overload) |
+| Living Room (R1) | 6 | ON/OFF or 300ms blink (overload) |
+| Kitchen (R2) | 7 | ON/OFF or 300ms blink (overload) |
+| Bedroom 1 (R3) | 8 | ON/OFF or 300ms blink (overload) |
+| Bedroom 2 (R4) | 9 | ON/OFF or 300ms blink (overload) |
 
 ### I2C LCD Display
 | Signal | GPIO Pin |
 |--------|----------|
-| SDA (Data) | 21 |
-| SCL (Clock) | 22 |
+| SDA (Data) | 20 |
+| SCL (Clock) | 21 |
 | Address | 0x27 |
 | Resolution | 20x4 |
 
@@ -121,8 +121,9 @@ SmartEnergyHub implements a strict **5-layer architecture** with unidirectional 
 | Parameter | Value |
 |-----------|-------|
 | Speed | 115200 baud |
-| TX Pin | GPIO 1 (default) |
-| RX Pin | GPIO 3 (default) |
+| TX Pin | GPIO 1 (default UART0) |
+| RX Pin | GPIO 0 (default UART0) |
+| Note | Arduino Mega has 4 UARTs; default Serial uses TX0/RX0 |
 
 ## 📦 Installation
 
@@ -305,12 +306,13 @@ Power (Watts) = (ADC_Reading × 2000) / 4095
 
 ## 📝 Build Information
 
-- **Platform**: Espressif 32 v6.12.0
+- **Platform**: ATmega AVR v5.4.0
 - **Framework**: Arduino
 - **Build Mode**: Release (optimized)
-- **Flash Usage**: ~298 KB (22.7%)
-- **RAM Usage**: ~22 KB (6.7%)
-- **Compilation Time**: ~4 minutes (first build)
+- **Flash Usage**: ~20 KB (≈8%)
+- **RAM Usage**: ~4 KB (≈50%)
+- **Compilation Time**: ~30 seconds (first build)
+- **MCU**: ATmega2560, 16 MHz, 8 KB SRAM, 256 KB Flash
 
 ## 🤝 Contributing
 
